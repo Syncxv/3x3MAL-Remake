@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 html,
 body {
   background-color: rgb(37, 37, 37);
@@ -23,4 +22,10 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.anime-grid {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(3, 1fr);
 }

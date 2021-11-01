@@ -2,7 +2,8 @@
 const path = require('path')
 module.exports = {
   reactStrictMode: true,
-  swcMinify: true,
+  // swcMinify: true,
+  presets: ["next/babel"],
   sassOptions: {
     includePaths: [path.join(__dirname, 'src', 'styles')],
   },
