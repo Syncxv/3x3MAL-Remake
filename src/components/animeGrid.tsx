@@ -1,13 +1,17 @@
 import type { NextPage } from 'next'
+import { AnimeEntity } from '../types'
 interface animeGridProps {
-    anime: [],
+    anime: AnimeEntity[],
 }
-const animeGrid: NextPage<animeGridProps> = ({anime}) => {
+const AnimeGrid: NextPage<animeGridProps> = ({anime}) => {
+    const isData = anime.length
   return (
     <>
-        
+        <div className="anime-grid">
+            {isData ? anime.map(item => <div>{item.title}</div>) : ""} 
+        </div>
     </>
   )
 }
 
-export default animeGrid
+export default AnimeGrid

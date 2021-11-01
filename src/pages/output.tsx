@@ -1,13 +1,22 @@
 import type { NextPage } from 'next'
+import { useState } from 'react'
+import AnimeGrid from '../components/AnimeGrid'
 
 const output: NextPage  = () => {
+    const [anime, setAnime] = useState([])
     const onClick = async (e:  React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         let form = e.target as HTMLFormElement
         const username = (form.elements[0] as HTMLInputElement).value
         console.log(username)
-        const data = await fetch(`api/getAnime?user=${username}`)
-        console.log(data)
+        const res = await fetch(`api/getAnime?user=${username}`)
+        const {data} = await res.json()
+        if(data.error) {
+            console.log(data)
+            throw Error("welp")
+        }
+        let random = data.anime.sort(() => .5 - Math.random()).slice(0,9)
+        setAnime(random)
     }
     return (
         <>
@@ -24,17 +33,7 @@ const output: NextPage  = () => {
             </div>
             
 
-            <div className="anime-grid">
-                <div>hey</div>
-                <div>hey</div>
-                <div>hey</div>
-                <div>hey</div>
-                <div>hey</div>
-                <div>hey</div>
-                <div>hey</div>
-                <div>hey</div>
-                <div>hey</div>
-            </div>
+            <AnimeGrid anime={anime} />
 
         </>
     )
